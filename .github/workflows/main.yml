@@ -59,15 +59,11 @@ jobs:
           cd enviornments/${{ inputs.workspace }}
           echo "instance_count = \"${{ inputs.instance_count }}\"" >> terraform.tfvars
           echo "ec2_instance_type = \"${{ inputs.instance_type }}\"" >> terraform.tfvars
-          cp terraform.tfvars variables.auto.tfvars
-
-
     - name: Terraform apply
       run: |
       
         cd enviornments/${{ inputs.workspace }}
         terraform init 
-        terraform plan -var-file=variables.auto.tfvars
+        terraform plan 
         # terraform apply -auto-approve -var-file=terraform.tfvars -input=false
     
-
