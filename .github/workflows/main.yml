@@ -41,12 +41,11 @@ jobs:
       env:
         TF_WORKSPACE: ${{ inputs.workspace }}
       run: |
-        pwd
-        ls -la
+      
         cd enviornments/${{ inputs.workspace }}
-        # terraform init
-        # terraform workspace select ${{ env.TF_WORKSPACE }}
-        # terraform plan
+        terraform init
+        terraform workspace select ${{ env.TF_WORKSPACE }}
+        terraform plan
         # terraform apply -auto-approve
        
 
