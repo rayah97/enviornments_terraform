@@ -40,14 +40,12 @@ jobs:
           token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform apply
-      env:
-        TF_WORKSPACE: ${{ inputs.workspace }}
       run: |
       
         cd enviornments/${{ inputs.workspace }}
         terraform init
         # terraform login
-        # terraform workspace select ${{ env.TF_WORKSPACE }}
+        # terraform workspace select ${{ inputs.workspace }}
         terraform plan
         # terraform apply -auto-approve
        
