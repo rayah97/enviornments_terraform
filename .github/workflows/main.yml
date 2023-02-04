@@ -56,6 +56,7 @@ jobs:
 
     - name: Update variables file
       run: |
+          cd enviornments/${{ inputs.workspace }}
           echo "instance_count = \"${{ inputs.instance_count }}\"" >> terraform.tfvars
           echo "ec2_instance_type = \"${{ inputs.instance_type }}\"" >> terraform.tfvars
 
