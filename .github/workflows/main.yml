@@ -11,6 +11,20 @@ on:
         - development
         - staging
         - production
+      
+      instance_type:
+          description: "Choose the EC2 instance type"
+          required: true
+          type: choice
+          options:
+          - t2.micro
+          - t2.nano
+      
+      instance_count:
+         description: "Add the count of the created EC2 instances"
+         required: false
+         type: string
+
 
 jobs:
   deploy:
@@ -39,14 +53,21 @@ jobs:
           workspace: ${{ inputs.workspace }}
           token: ${{ secrets.TF_API_TOKEN }}
 
+
+    - name: Update variables file
+      run: |
+          echo "instance_count = \"${{ inputs.instance_count }}\"" >> variables.tfvars
+          echo "ec2_instance_type = \"${{ inputs.instance_type }}\"" >> variables.tfvars
+
+
     - name: Terraform apply
       run: |
       
         cd enviornments/${{ inputs.workspace }}
-        terraform init
+        terraform init 
         # terraform login
         # terraform workspace select ${{ inputs.workspace }}
-        terraform plan
-        # terraform apply -auto-approve
+        terraform plan -var-file=variables.tfvars -input=false
+        # terraform apply -auto-approve -var-file=variables.tfvars -input=false
        
 
