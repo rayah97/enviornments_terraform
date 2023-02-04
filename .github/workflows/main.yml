@@ -65,5 +65,5 @@ jobs:
         cd enviornments/${{ inputs.workspace }}
         terraform init 
         terraform plan 
-        # terraform apply -auto-approve -var-file=terraform.tfvars -input=false
+        terraform apply -auto-approve -var-file=terraform.tfvars -input=false
     
