@@ -41,7 +41,7 @@ jobs:
       env:
         TF_WORKSPACE: ${{ inputs.workspace }}
       run: |
-        echo pwd
+        pwd
         ls -la
         # cd environments/${{ inputs.workspace }}
         # terraform init
