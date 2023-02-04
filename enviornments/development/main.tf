@@ -12,7 +12,7 @@ terraform {
     organization = "terraform-rayah"
 
     workspaces {
-      name = "${var.resource_tags["project"]}-${var.resource_tags["environment"]}"
+      name = "development"
     }
   }
 }
