@@ -30,12 +30,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Create Terraform workspace
-      env:
-        TF_WORKSPACE: ${{ inputs.workspace }}
-      run: |
-        terraform login -no-color -non-interactive -hostname=app.terraform.io -username=${{ secrets.TF_USERNAME }} -password=${{ secrets.TF_API_TOKEN }}
-        terraform workspace new ${{ env.TF_WORKSPACE }} || terraform workspace select ${{ env.TF_WORKSPACE }}
+    - name: setup workspace
+      uses: reguengos/terraform-github-workspace-setup-action@master
+      with:
+          organization: "terraform-rayah"
+          workspace: ${{ inputs.workspace }}
+          token: ${{ secrets.TF_API_TOKEN }}
 
     - name: Terraform apply
       env:
