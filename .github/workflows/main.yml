@@ -43,7 +43,7 @@ jobs:
       run: |
         pwd
         ls -la
-        cd /environments/${{ inputs.workspace }}
+        cd /environments
         # terraform init
         # terraform workspace select ${{ env.TF_WORKSPACE }}
         # terraform plan
