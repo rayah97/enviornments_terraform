@@ -44,7 +44,7 @@ jobs:
       
         cd enviornments/${{ inputs.workspace }}
         terraform init
-        terraform workspace select ${{ env.TF_WORKSPACE }}
+        # terraform workspace select ${{ env.TF_WORKSPACE }}
         terraform plan
         # terraform apply -auto-approve
        
