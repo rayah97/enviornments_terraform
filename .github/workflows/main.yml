@@ -56,8 +56,8 @@ jobs:
 
     - name: Update variables file
       run: |
-          echo "instance_count = \"${{ inputs.instance_count }}\"" >> variables.tfvars
-          echo "ec2_instance_type = \"${{ inputs.instance_type }}\"" >> variables.tfvars
+          echo "instance_count = \"${{ inputs.instance_count }}\"" >> terraform.tfvars
+          echo "ec2_instance_type = \"${{ inputs.instance_type }}\"" >> terraform.tfvars
 
 
     - name: Terraform apply
@@ -65,9 +65,7 @@ jobs:
       
         cd enviornments/${{ inputs.workspace }}
         terraform init 
-        # terraform login
-        # terraform workspace select ${{ inputs.workspace }}
-        terraform plan -var-file=variables.tfvars -input=false
-        # terraform apply -auto-approve -var-file=variables.tfvars -input=false
+        terraform plan -var-file=terraform.tfvars -input=false
+        # terraform apply -auto-approve -var-file=terraform.tfvars -input=false
        
 
